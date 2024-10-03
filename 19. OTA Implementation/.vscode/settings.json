@@ -14,7 +14,8 @@
     "idf.pythonBinPathWin": "C:\\Users\\dheer\\.espressif\\python_env\\idf5.3_py3.11_env\\Scripts\\python.exe",
     "idf.toolsPathWin": "C:\\Users\\dheer\\.espressif",
     "files.associations": {
-        "esp_https_ota.h": "c"
+        "esp_https_ota.h": "c",
+        "esp_http_client.h": "c"
     },
     "idf.portWin": "COM3",
     "idf.flashType": "UART"

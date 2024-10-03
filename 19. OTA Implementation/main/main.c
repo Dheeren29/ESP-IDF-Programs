@@ -14,9 +14,8 @@
 #include "nvs.h"
 #include "nvs_flash.h"
 
+#define OTA_URL_SIZE 256
 static const char *TAG = "OTA demo";
-
-#define OTA_URL_SIZE 256 
 
 esp_err_t _http_event_handler(esp_http_client_event_t *evt)
 {
@@ -42,29 +41,33 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
     case HTTP_EVENT_DISCONNECTED:
         ESP_LOGD(TAG, "HTTP_EVENT_DISCONNECTED");
         break;
+    case HTTP_EVENT_REDIRECT:
+        ESP_LOGD(TAG, "HTTP_EVENT_REDIRECT");
+        break;
     }
     return ESP_OK;
 }
 
 void simple_ota_example_task(void *pvParameter)
-{
-    ESP_LOGI(TAG, "Starting OTA example");
+{   ESP_LOGI(TAG, "Starting OTA example");
 
-    esp_http_client_config_t config = {
-        .url = CONFIG_EXAMPLE_FIRMWARE_UPGRADE_URL,
-        .cert_pem = (char *)"",
-        .event_handler = _http_event_handler,
-    };
+    esp_http_client_config_t config = { .url = CONFIG_EXAMPLE_FIRMWARE_UPGRADE_URL, .cert_pem =  (char *)"", 
+                                        .event_handler = _http_event_handler,   };
+    
+    esp_https_ota_config_t ota_config = { .http_config = &config,     };
 
-    esp_err_t ret = esp_https_ota(&config);
-    if (ret == ESP_OK) {
-        esp_restart();
-    } else {
-        ESP_LOGE(TAG, "Firmware upgrade failed");
-    }
-    while (1) {
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
-    }
+    ESP_LOGI(TAG, "Attempting to download update from %s", config.url);
+
+    esp_err_t ret = esp_https_ota(&ota_config);
+    if (ret == ESP_OK) 
+        {   ESP_LOGI(TAG, "OTA update successful, restart esp after pausing update roll out...");
+            //esp_restart();  
+        } 
+    else 
+        {   ESP_LOGE(TAG, "Firmware upgrade failed");   }
+    
+    while (1) 
+        {   vTaskDelay(1000 / portTICK_PERIOD_MS);  }
 }
 
 void app_main(void)
