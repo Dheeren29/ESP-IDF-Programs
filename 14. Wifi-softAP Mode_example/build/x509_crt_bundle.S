@@ -1,4 +1,4 @@
-/* * Data converted from C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

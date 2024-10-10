@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "C:/Users/dheer/esp/v5.3/esp-idf/components/bootloader/subproject"
-  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader"
-  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix"
-  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix/tmp"
-  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix/src/bootloader-stamp"
-  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix/src"
-  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader"
+  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix"
+  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix/tmp"
+  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix/src/bootloader-stamp"
+  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix/src"
+  "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

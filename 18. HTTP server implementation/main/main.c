@@ -12,18 +12,12 @@
 static const char *TAG = "HTTP demo";
 
 static esp_err_t get_handler(httpd_req_t *req)
-{
-    const char resp[] = "Hello World!!";
+{   const char resp[] = "Hello World!!";
     httpd_resp_send(req, resp, HTTPD_RESP_USE_STRLEN);
     return ESP_OK;
 }
 
-httpd_uri_t uri_get = {
-    .uri      = "/uri",
-    .method   = HTTP_GET,
-    .handler  = get_handler,
-    .user_ctx = NULL
-};
+httpd_uri_t uri_get = { .uri = "/uri",  .method = HTTP_GET,  .handler = get_handler,  .user_ctx = NULL  };
 
 static httpd_handle_t start_webserver(void)
 {
@@ -32,27 +26,24 @@ static httpd_handle_t start_webserver(void)
 
     // Start the httpd server
     ESP_LOGI(TAG, "Starting server on port: '%d'", config.server_port);
-    if (httpd_start(&server, &config) == ESP_OK) {
-        // Set URI handlers
+    if (httpd_start(&server, &config) == ESP_OK) 
+    {   
         ESP_LOGI(TAG, "Registering URI handlers");
-        httpd_register_uri_handler(server, &uri_get);
+        httpd_register_uri_handler(server, &uri_get);                               // Set URI handlers
         return server;
     }
-
     ESP_LOGI(TAG, "Error starting server!");
     return NULL;
 }
 
 static void stop_webserver(httpd_handle_t server)
-{
-    httpd_stop(server);
-}
+{   httpd_stop(server); }
 
 static void disconnect_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
     httpd_handle_t* server = (httpd_handle_t*) arg;
-    if (*server) {
-        ESP_LOGI(TAG, "Stopping webserver");
+    if (*server) 
+    {   ESP_LOGI(TAG, "Stopping webserver");
         stop_webserver(*server);
         *server = NULL;
     }
@@ -61,15 +52,14 @@ static void disconnect_handler(void* arg, esp_event_base_t event_base, int32_t e
 static void connect_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
     httpd_handle_t* server = (httpd_handle_t*) arg;
-    if (*server == NULL) {
-        ESP_LOGI(TAG, "Starting webserver");
+    if (*server == NULL) 
+    {   ESP_LOGI(TAG, "Starting webserver");
         *server = start_webserver();
     }
 }
 
 void app_main(void)
-{
-    static httpd_handle_t server = NULL;
+{   static httpd_handle_t server = NULL;
 
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
@@ -77,10 +67,10 @@ void app_main(void)
 
     ESP_ERROR_CHECK(example_connect());
 
-#ifdef CONFIG_EXAMPLE_CONNECT_WIFI
-    ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
-    ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
-#endif // CONFIG_EXAMPLE_CONNECT_WIFI
+    #ifdef CONFIG_EXAMPLE_CONNECT_WIFI
+        ESP_ERROR_CHECK(esp_event_handler_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &connect_handler, &server));
+        ESP_ERROR_CHECK(esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &disconnect_handler, &server));
+    #endif // CONFIG_EXAMPLE_CONNECT_WIFI
 
     server = start_webserver();
 }

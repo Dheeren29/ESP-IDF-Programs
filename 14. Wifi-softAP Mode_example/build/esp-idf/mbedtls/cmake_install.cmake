@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
+  include("C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/build/esp-idf/mbedtls/mbedtls/cmake_install.cmake")
 endif()
 

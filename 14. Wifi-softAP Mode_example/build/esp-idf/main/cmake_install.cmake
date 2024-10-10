@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode/main
+# Install script for directory: C:/Users/dheer/Downloads/vs codes esp_idf/14. Wifi-softAP Mode_example/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: C:\Users\dheer\Downloads\vs codes esp_idf\14. Wifi-softAP Mode\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: C:\Users\dheer\Downloads\vs codes esp_idf\14. Wifi-softAP Mode_example\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
 
