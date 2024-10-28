@@ -1,0 +1,36 @@
+OTA HELPING NOTES FOR DEVELOPER:
+
+#Line to modify the build configuration (e.g., in your CMakeLists.txt in main folder) not to treat switch warnings as errors
+target_compile_options(${COMPONENT_LIB} PRIVATE -Wno-error=switch)
+
+# This example uses an extra component for common functions such as Wi-Fi and Ethernet connection.
+set(EXTRA_COMPONENT_DIRS $ENV{IDF_PATH}/examples/common_components/protocol_examples_common)
+
+//Kprojbuild file to add data for ota URL
+menu "Example Configuration"
+
+    config EXAMPLE_FIRMWARE_UPGRADE_URL
+        string "firmware upgrade url endpoint"
+        help
+            URL of server which hosts the firmware
+            image.
+
+    config EXAMPLE_FIRMWARE_UPGRADE_URL_FROM_STDIN
+        bool
+        default y if EXAMPLE_FIRMWARE_UPGRADE_URL = "FROM_STDIN"
+        help
+            Set this to use the URL from stdin.
+
+    config EXAMPLE_SKIP_COMMON_NAME_CHECK
+        bool "Skip server certificate CN fieldcheck"
+        default n
+        help
+            This allows you to skip the validation of OTA server certificate CN field.
+
+endmenu
+
+http://192.168.0.103:8070/OTA_esp32.bin
+
+C:\Users\dheer\Downloads\esp-idf backup\OTA hosts build
+
+python -m http.server 8070
