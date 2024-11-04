@@ -3,7 +3,7 @@
 #include "freertos/task.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
-#include "esp32/rom/ets_sys.h"
+#include "esp32/rom/ets_sys.h"								// used for function ets_delay_us()
 
 #define DHT11_PIN GPIO_NUM_4                                // GPIO pin where the DHT11 data pin is connected
 
